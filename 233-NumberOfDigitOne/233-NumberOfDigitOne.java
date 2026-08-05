@@ -1,0 +1,27 @@
+// Last updated: 8/5/2026, 1:56:21 PM
+class Solution {
+
+    public int countDigitOne(int n) {
+
+        long factor = 1;
+        int count = 0;
+
+        while (factor <= n) {
+
+            long lower = n % factor;
+            long current = (n / factor) % 10;
+            long higher = n / (factor * 10);
+
+            if (current == 0)
+                count += higher * factor;
+            else if (current == 1)
+                count += higher * factor + lower + 1;
+            else
+                count += (higher + 1) * factor;
+
+            factor *= 10;
+        }
+
+        return count;
+    }
+}
